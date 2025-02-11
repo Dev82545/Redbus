@@ -3,6 +3,16 @@
 
 {% block body %}
 {% if bus %}
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissible fade show my-0" role="alert" >
+    <strong>{{message}}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+{% endif %}
   <div class ='card-header bg-info'>
     <h1><i> {{bus.name}} </i></h1>
   </div>
@@ -12,12 +22,26 @@
     <h3>Arrival in: {{bus.city2}}</h3>
     <h3>Departure time: {{bus.dep_time}}</h3>
     <h3>arrival time: {{bus.arr_time}}</h3>
-    <h3>Seats left: {{bus.seats}}</h3>
-    <form method = "get" action = 'seat/' class="form-inline my-2 my-lg-0">
-    <div class="input-group">
-    <div class="input-group-prepend">
-    <h3>How many seats do you want to book:</h3>   <input type="text" class="form-control" name = 'query' id = 'query'>  <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" href = "/redbus/{{buses.slug}}/seat" >Checkout</button> 
-    </div>
+    <h3>Bus route: {{bus.stops}}</h3>
+    <h3>Luxury Seats left: {{bus.luxury_seats}}</h3>
+    <h3>Sleeper Seats left: {{bus.sleeper_seats}}</h3>
+    <h3>General Seats left: {{bus.seats}}</h3>
+    <form method = "get" action = 'seat/' class="my-2 my-lg-0">
+        <div class="input-group-prepend">
+          <div class="mb-3 mx-6 ">
+            <label for="query" class="form-label">How many seats do you want to book:</label>
+            <input type="text" class="form-control" name = 'query' id = 'query' placeholder="0" default = 0>
+          </div>
+          <div class="mb-3 mx-6">
+            <label for="query" class="form-label">How many luxury seats do you want to book:</label>
+            <input type="text" class="form-control" name = 'que' id = 'que' placeholder="0" default = 0>
+          </div>
+          <div class="mb-3">
+            <label for="query" class="form-label">How many sleeper seats do you want to book:</label>
+            <input type="text" class="form-control" name = 'tue' id = 'tue' placeholder="0" default = 0>
+          </div>
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" href = "/redbus/{{buses.slug}}/seat" >Checkout</button>   
+        </div>
     </form>
     </p>
   </div>

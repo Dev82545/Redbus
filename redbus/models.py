@@ -9,7 +9,9 @@ class buses(models.Model):
     arr_time =models.CharField(max_length= 255)
     stops =models.CharField(max_length= 255)
     slug = models.CharField(max_length= 255)
-    seats =models.IntegerField()
+    luxury_seats = models.PositiveIntegerField(default = 0)
+    sleeper_seats = models.PositiveIntegerField(default = 0)
+    seats =models.PositiveIntegerField()
     
     
     def __str__(self):

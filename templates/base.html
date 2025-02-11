@@ -29,12 +29,12 @@
 			</li>
 		  </ul>
 		{% if user.is_authenticated %}
-		  	<button type="button" class="btn btn-outline-primary mx-1" data-target="Logout">
+		  	<a type="button" class="btn btn-outline-primary mx-1" href = "hlogout/" data-target="Logout">
 		   		Logout
-			</button>
-			<button type="button" class="btn btn-outline-primary mr-0" data-target="Profile">
+			</a>
+			<a type="button" class="btn btn-outline-primary mr-0" href = "profile/" data-target="profile">
 				Profile
-			</button>
+			</a>
 			  
 		{% else %}
 			<button type="button" class="btn btn-outline-primary mx-1"  data-toggle="modal" data-target="#loginModal">

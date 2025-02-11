@@ -2,20 +2,15 @@ from django.shortcuts import redirect, render, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from redbus.models import buses
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, get_user_model
+from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'home.html')
-'''
+
+@login_required
 def profile(request):
-    messages.SUCCESS(request,"WELCOME TO PROFILE")
-    if request.method =='post':
-        name = request.POST['name']
-        email = request.POST['email']
-        phone = request.POST['phone']
-        print('h')
-        profile = profile(name = name, email = email, phone = phone)
-        profile.save()
-    return render(request, 'profile.html')'''
+    h = request.user
+    return render(request, 'profile.html')
 
 def search(request):
     query = request.GET['query']
