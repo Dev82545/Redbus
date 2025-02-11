@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+
+{% block body %}
+{% if pos|length < 1 %}
+   <div class ='container'>
+      <h1><i>No search Results<i></h1>
+      <p>
+      <i>Please input a location present within the databse to move forward.<i>
+      <a href="/" class="btn btn-primary">Search again</a>
+      </p>
+   </div>
+{% endif %}
+{% for buses in pos %}
+    <div class="card-header">
+      {{buses.timetaken_inhrs}}
+    </div>
+    <div class="card-body">
+       <h5 class="card-title">{{buses.name}}</h5>
+       <p class="card-text">{{buses.city1}}<a> to</a>{{buses.city2}}</p>
+       <a href="/redbus/{{buses.slug}}" class="btn btn-primary">Book Tickets</a>
+    </div>
+</div>
+{% endfor %}
+<div class ="card">
+
+{% endblock body %}
