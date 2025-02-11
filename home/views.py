@@ -5,6 +5,7 @@ from redbus.models import buses
 from django.contrib.auth import login, logout, authenticate
 def home(request):
     return render(request, 'home.html')
+'''
 def profile(request):
     messages.SUCCESS(request,"WELCOME TO PROFILE")
     if request.method =='post':
@@ -14,7 +15,7 @@ def profile(request):
         print('h')
         profile = profile(name = name, email = email, phone = phone)
         profile.save()
-    return render(request, 'profile.html')
+    return render(request, 'profile.html')'''
 
 def search(request):
     query = request.GET['query']
