@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+{% block body %}
+<meta charset="UTF-8">
+<!-- Optionally include Bootstrap for styling -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<div class="container mt-5">
+    <h1>Wallet Top-Up</h1>
+    <p>Your current wallet balance is: <strong>${{ wallet.balance }}</strong></p>
+    <hr>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Funds</button>
+    </form>
+</div>
+{% endblock body %}

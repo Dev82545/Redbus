@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+{% block body %}
+    <h1>Book Tickets for Family Members</h1>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Booking Details</legend>
+            {{ form.as_p }}
+        </fieldset>
+        <button type="submit">Book Tickets</button>
+    </form>
+    <p>
+        Need to add a new passenger? <a href="{% url 'add_passenger' %}">Add Passenger</a>
+    </p>
+{% endblock body %}

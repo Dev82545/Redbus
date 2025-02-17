@@ -1,8 +1,78 @@
 {% extends 'base.html' %}
 {% block title %}{% endblock title %}
 {% block body %}
-<div class ='container'>
-  <h1>Profile</h1>
-  <h2>{{user.username}}</h2>
-  <h2>{{user.email}}</h2>
+{% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissible fade show my-0" role="alert" >
+    <strong>{{message}}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+{% endif %}
+<fieldset>
+  <div class ='container'>
+  <legend>Personal Information</legend>
+    <h4>{{user.username}}</h4>
+    <h4>{{user.email}}</h4>
+    <h4>Bookings:</h4>
+    <div class="card">
+      {% if t %}
+       {% for booking in t %}
+      <div class="card mb-3">
+        <div class="card-header">
+          <!-- Display the bus name from the related 'buses' object -->
+          {{ booking.buses.name }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Booking Details</h5>
+          <!-- You can display additional details from both Seat_booked and buses -->
+          <p class="card-text">
+            Date: {{ booking.buses.date }}<br>
+            Departure: {{ booking.buses.dep_time }} from {{ booking.buses.city1 }}<br>
+            Arrival: {{ booking.buses.arr_time }} at {{ booking.buses.city2 }}<br>
+            Stops: 
+            {% for stop in booking.buses.stop.all %}
+              {{ stop.stop }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}<br>
+            Seat Number: {{ booking.seat_number }}<br>
+            Luxury Seat Number: {{ booking.lseat_number }}<br>
+            Sleeper Seat Number: {{ booking.sseat_number }}
+          </p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cancelModal{{ booking.id }}">Cancel booking</button>
+          <!-- Button trigger modal --          
+
+          <!-- Modal -->
+          <!-- Modal -->
+          <form method="post" action = {% url 'cancel_booking' booking.id %}>
+            {% csrf_token %}
+          <div class="modal fade" id="cancelModal{{ booking.id }}" tabindex="-1" aria-labelledby="cancelModalLabel{{ booking.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="cancelModalLabel{{ booking.id }}">Cancel Booking</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to cancel this booking?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger">Yes, Cancel Booking</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </div>
+    {% empty %}
+      <p>No bookings available.</p>
+    {% endfor %}
+  {% else %}
+     <p>No bookings found.</p>
+  {% endif %}
+ </div>
+</fieldset>
 {% endblock body %}

@@ -18,8 +18,7 @@
   </div>
   <div class = 'card-body bg-info'>
     <p>
-    <h3>Departure from: {{bus.city1}}</h3>
-    <h3>Arrival in: {{bus.city2}}</h3>
+    <h3>Date: {{bus.date}}</h3>
     <h3>Departure time: {{bus.dep_time}}</h3>
     <h3>arrival time: {{bus.arr_time}}</h3>
     <h3>Bus route: {{bus.stops}}</h3>
@@ -30,15 +29,15 @@
         <div class="input-group-prepend">
           <div class="mb-3 mx-6 ">
             <label for="query" class="form-label">How many seats do you want to book:</label>
-            <input type="text" class="form-control" name = 'query' id = 'query' placeholder="0" default = 0>
+            <input type="text" class="form-control" name = 'query' id = 'query' placeholder="0" value ='0'>
           </div>
           <div class="mb-3 mx-6">
             <label for="query" class="form-label">How many luxury seats do you want to book:</label>
-            <input type="text" class="form-control" name = 'que' id = 'que' placeholder="0" default = 0>
+            <input type="text" class="form-control" name = 'que' id = 'que' placeholder="0"  value ='0'>
           </div>
           <div class="mb-3">
             <label for="query" class="form-label">How many sleeper seats do you want to book:</label>
-            <input type="text" class="form-control" name = 'tue' id = 'tue' placeholder="0" default = 0>
+            <input type="text" class="form-control" name = 'tue' id = 'tue' placeholder="0"  value ='0'>
           </div>
         <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" href = "/redbus/{{buses.slug}}/seat" >Checkout</button>   
         </div>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Add Passenger Details{% endblock title %}
+{% block body %}
+<div class="container mt-5">
+    <h1>Add Passenger Details</h1>
+    <p>Total Seats Booked: <strong>{{ total_seats }}</strong></p>
+    <p>Passengers Added: <strong>{{ current_count }}</strong></p>
+    
+    <hr>
+    
+    <h3>Select Saved Passengers</h3>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ select_form.as_p }}
+        <button type="submit" name="select_saved" class="btn btn-primary">Add Selected Passengers</button>
+    </form>
+    
+    <hr>
+    
+    <h3>Add a New Passenger</h3>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ new_passenger_form.as_p }}
+        <button type="submit" name="add_new" class="btn btn-success">Add New Passenger</button>
+    </form>
+</div>
+{% endblock body %}

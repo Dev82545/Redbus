@@ -3,5 +3,6 @@ from . import views
 urlpatterns = [
     path('',views.redbus,name = 'redbus'),
     path('<str:slug>/', views.red, name = 'red'),
-    path('<str:slug>/seat/',views.seat, name = 'seat')
+    path('<str:slug>/seat/',views.seat, name = 'seat'),
+    path('passenger/<int:booking_id>/', views.add_passenger, name='add_passenger'),
 ]

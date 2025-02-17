@@ -25,14 +25,14 @@
 			  <a class="nav-link" href="#">BusRoutes</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Wallet</a>
+				<a class="nav-link" href={%url 'wallet'%}>Wallet</a>
 			</li>
 		  </ul>
 		{% if user.is_authenticated %}
 		  	<a type="button" class="btn btn-outline-primary mx-1" href = "hlogout/" data-target="Logout">
 		   		Logout
 			</a>
-			<a type="button" class="btn btn-outline-primary mr-0" href = "profile/" data-target="profile">
+			<a type="button" class="btn btn-outline-primary mr-0" href = {%url 'profile'%} data-target="profile">
 				Profile
 			</a>
 			  
@@ -44,12 +44,12 @@
 				Sign Up
 			</button>
 		{% endif %}
-		  <!-- Modal -->
-		  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+
+		<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 			  <div class="modal-content">
 				<div class="modal-header">
-				  <h5 class="modal-title" id="signupModal">Sign Up here</h5>
+				  <h5 class="modal-title" id="signupModal">Join Today!</h5>
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				  </button>
@@ -57,29 +57,36 @@
 				<div class="modal-body">
 					<form action = {%url 'signup'%} method = 'post'>
 						<div class="form-group">
-						  <label for="username">username</label>
-						  <input type="username" class="form-control" id="username" name ="username" placeholder="Enter your username" required>
-						</div>
+							<label for="username">username</label>
+							<input type="username" class="form-control" id="username" name ="username" placeholder="Enter your username" required>
+						  </div>
 						<div class="form-group">
-						  <label for="email">Email adress</label>
-						  <input type="email" class="form-control" id="email" name = "email"  placeholder="name@example.com" required>
-						</div>
+							<label for="fname">First Name</label>
+							<input type="username" class="form-control" id="fname" name ="fname" placeholder="Enter your firstname" required>
+						  </div>
 						<div class="form-group">
-						  <label for="pass1">password</label>
-						  <input type="password" class="form-control" id="pass1"  name = "pass1" placeholder="Enter a strong password" required>
-						</div>
-						<div class="form-group">
-						  <label for="pass2"> Confirm Password</label>
-						  <input type="password" class="form-control" id="pass2"  name = "pass2" placeholder="Confirm password" required>
-						</div>
-						{%csrf_token%}
-						<button type="submit" class="btn btn-primary">Save</button>
-					  </form>
+							<label for="lname">Last Name</label>
+							<input type="username" class="form-control" id="lname" name ="lname" placeholder="Enter your lastname" required>
+						  </div>
+						  <div class="form-group">
+							<label for="email">Email adress</label>
+							<input type="email" class="form-control" id="email" name = "email"  placeholder="name@example.com" required>
+						  </div>
+						  <div class="form-group">
+							<label for="pass1">password</label>
+							<input type="password" class="form-control" id="pass1"  name = "pass1" placeholder="Enter a strong password" required>
+						  </div>
+						  <div class="form-group">
+							<label for="pass2"> Confirm Password</label>
+							<input type="password" class="form-control" id="pass2"  name = "pass2" placeholder="Confirm password" required>
+						  </div>
+						  {%csrf_token%}
+						  <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
 				</div>
 			  </div>
 			</div>
-		  </div>
-		  
+		</div>
 		
 		  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -91,7 +98,7 @@
 				  </button>
 				</div>
 				<div class="modal-body">
-					<form action = {%url 'hlogin'%} method = 'post'>
+					<form action = {%url 'login'%} method = 'post'>
 						<div class="form-group">
 						  <label for="username1">username</label>
 						  <input type="username" class="form-control" id="username1" name ="username1" placeholder="Enter your username" required>
